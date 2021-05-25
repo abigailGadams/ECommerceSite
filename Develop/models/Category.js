@@ -1,20 +1,21 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require("sequelize");
 
-const sequelize = require('../config/connection.js');
+const sequelize = require("../config/connection.js");
+const mongoose = require("mongoose");
 
 class Category extends Model {}
 
 Category.init(
   {
-    // define columns
+    category_name: DataTypes.STRING
   },
-  {
+  name: {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'category',
+    modelName: "category",
   }
 );
 
-module.exports = Category;
+module.exports = mongoose.model("Category",catagorySchema);
