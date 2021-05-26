@@ -12,7 +12,9 @@ Product.init(
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL,
     stock: DataTypes.INTEGER,
-    catagory_,
+    catagory_id: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
     sequelize,

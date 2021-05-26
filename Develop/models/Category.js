@@ -7,9 +7,9 @@ class Category extends Model {}
 
 Category.init(
   {
-    category_name: DataTypes.STRING
+    category_name: DataTypes.STRING,
   },
-  name: {
+  {
     sequelize,
     timestamps: false,
     freezeTableName: true,
@@ -18,4 +18,4 @@ Category.init(
   }
 );
 
-module.exports = mongoose.model("Category",catagorySchema);
+module.exports = mongoose.model("Category", catagorySchema);
