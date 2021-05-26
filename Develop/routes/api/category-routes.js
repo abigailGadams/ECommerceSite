@@ -5,19 +5,10 @@ const { Category, Product } = require("../../models");
 
 router.get("/", (req, res) => {
   Category.findAll({
-    attributes: ["id", "category_name"],
-    include: [
-      {
-        model: Product,
-        attributes: ["id", "product_name", "price", "stock", "category_id"],
-      },
-    ],
+    include: [Product],
   })
-    .then((data) => res.json(data))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .then((categories) => res.json(categories))
+    .catch((err) => res.status(500).json(err));
 });
 
 router.get("/:id", (req, res) => {
@@ -25,38 +16,16 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "category_name"],
-    include: [
-      {
-        model: Product,
-        attributes: ["id", "product_name", "price", "stock", "category_id"],
-      },
-    ],
+    include: [Product],
   })
-    .then((data) => {
-      if (!data) {
-        res.status(404).json({
-          message: "Category does not exist!",
-        });
-        return;
-      }
-      res.json(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .then((category) => res.json(category))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.post("/", (req, res) => {
-  Category.create({
-    category_name: req.body.category_name,
-  })
-    .then((data) => res.json(data))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  Category.create(req.body)
+    .then((category) => res.status(200).json(category))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.put("/:id", (req, res) => {
@@ -65,19 +34,8 @@ router.put("/:id", (req, res) => {
       id: req.params.id,
     },
   })
-    .then((data) => {
-      if (!data[0]) {
-        res.status(404).json({
-          message: "This category does not exist!",
-        });
-        return;
-      }
-      res.json(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    .then((category) => res.status(200).json(category))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.delete("/:id", (req, res) => {
@@ -85,15 +43,9 @@ router.delete("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-  }).then((data) => {
-    if (!data) {
-      res.status(404).json({
-        message: "This category does not exist!",
-      });
-      return;
-    }
-    res.json(data);
-  });
+  })
+    .then((category) => res.status(200).json(category))
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;
