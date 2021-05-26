@@ -1,5 +1,13 @@
 # E-commerce Back End
 
+![13-orm-homework-demo-01 (1)](https://user-images.githubusercontent.com/74374839/119739711-7af09d00-be37-11eb-941e-14cb836751d1.gif)
+
+
+
+
+
+
+
 ## User Story
 
     `AS A manager at an internet retail company
