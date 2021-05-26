@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 
 const sequelize = require("../config/connection.js");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 class Category extends Model {}
 
@@ -18,4 +18,4 @@ Category.init(
   }
 );
 
-module.exports = mongoose.model("Category", catagorySchema);
+module.exports = Category;
